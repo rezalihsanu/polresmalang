@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Merriweather:wght@700;900&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+/* =========================================
+   DESIGN TOKENS — Polres Malang
+   ========================================= */
+@theme {
+    /* Navy Blue Polri */
+    --color-navy-50: #eef2ff;
+    --color-navy-100: #e0e7ff;
+    --color-navy-200: #c7d2fe;
+    --color-navy-300: #a5b4fc;
+    --color-navy-400: #818cf8;
+    --color-navy-500: #1a3a6c;
+    --color-navy-600: #152e56;
+    --color-navy-700: #0f2340;
+    --color-navy-800: #0a1829;
+    --color-navy-900: #050d15;
+
+    /* Gold Aksen */
+    --color-gold-400: #f5c842;
+    --color-gold-500: #e5b730;
+    --color-gold-600: #c89c1a;
+
+    /* Merah Indonesia */
+    --color-red-polri: #cc0000;
+    --color-red-polri-dark: #990000;
+
+    /* Font */
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-serif: 'Merriweather', Georgia, serif;
+
+    /* Breakpoints */
+    --breakpoint-xs: 480px;
+}
+
+/* =========================================
+   BASE STYLES
+   ========================================= */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        color: #1e293b;
+        background-color: #f8fafc;
+    }
+
+    h1, h2, h3 {
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* =========================================
+   CUSTOM COMPONENTS
+   ========================================= */
+@layer components {
+    /* Tombol utama */
+    .btn-primary {
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-navy-500 text-white font-semibold rounded-xl
+               hover:bg-navy-600 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-navy-500 text-navy-500 font-semibold
+               rounded-xl hover:bg-navy-500 hover:text-white active:scale-95 transition-all duration-200;
+    }
+
+    .btn-danger {
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-semibold rounded-xl
+               hover:bg-red-700 active:scale-95 transition-all duration-200;
+    }
+
+    .btn-gold {
+        @apply inline-flex items-center gap-2 px-6 py-3 bg-gold-500 text-navy-800 font-bold rounded-xl
+               hover:bg-gold-600 active:scale-95 transition-all duration-200 shadow-md;
+    }
+
+    /* Card */
+    .card {
+        @apply bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden
+               hover:shadow-lg transition-shadow duration-300;
+    }
+
+    .card-hover {
+        @apply bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+    }
+
+    /* Section Heading */
+    .section-title {
+        @apply text-3xl font-bold text-navy-700 mb-2;
+    }
+
+    .section-subtitle {
+        @apply text-slate-500 text-lg mb-8;
+    }
+
+    .section-divider {
+        @apply w-16 h-1 bg-gold-500 rounded-full mb-4;
+    }
+
+    /* Badge */
+    .badge {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+    }
+
+    .badge-navy {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-navy-100 text-navy-700;
+    }
+
+    .badge-gold {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gold-400 text-navy-800;
+    }
+
+    .badge-red {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700;
+    }
+
+    .badge-green {
+        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700;
+    }
+
+    /* Form */
+    .form-input {
+        @apply w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800
+               placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500/30
+               focus:border-navy-500 transition-all duration-200;
+    }
+
+    .form-label {
+        @apply block text-sm font-semibold text-slate-700 mb-1.5;
+    }
+
+    .form-error {
+        @apply text-xs text-red-600 mt-1;
+    }
+
+    /* Navbar link */
+    .nav-link {
+        @apply text-slate-100 hover:text-gold-400 font-medium transition-colors duration-200
+               relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0
+               after:bg-gold-400 after:transition-all after:duration-300 hover:after:w-full;
+    }
+
+    .nav-link-active {
+        @apply text-gold-400 after:w-full;
+    }
+
+    /* Alert */
+    .alert-success {
+        @apply flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800;
+    }
+
+    .alert-error {
+        @apply flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800;
+    }
+
+    .alert-info {
+        @apply flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-800;
+    }
+
+    /* Glassmorphism */
+    .glass {
+        @apply bg-white/10 backdrop-blur-md border border-white/20;
+    }
+
+    /* Loading skeleton */
+    .skeleton {
+        @apply bg-slate-200 animate-pulse rounded-lg;
+    }
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@layer utilities {
+    .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.5s ease-out forwards;
+    }
+
+    .animate-slide-down {
+        animation: slideDown 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+}
+
+/* Scrollbar custom */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #1a3a6c;
+    border-radius: 3px;
+}
