@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Merriweather:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
@@ -7,30 +7,32 @@
    DESIGN TOKENS — Polres Malang
    ========================================= */
 @theme {
-    /* Navy Blue Polri */
-    --color-navy-50: #eef2ff;
-    --color-navy-100: #e0e7ff;
+    /* Navy Blue Polri — Institutional */
+    --color-navy-50:  #EEF2FF;
+    --color-navy-100: #E0E7FF;
     --color-navy-200: #c7d2fe;
     --color-navy-300: #a5b4fc;
-    --color-navy-400: #818cf8;
-    --color-navy-500: #1a3a6c;
-    --color-navy-600: #152e56;
-    --color-navy-700: #0f2340;
-    --color-navy-800: #0a1829;
-    --color-navy-900: #050d15;
+    --color-navy-400: #3A6EA8;
+    --color-navy-500: #1D4F91;
+    --color-navy-600: #123B6D;
+    --color-navy-700: #0B2345;
+    --color-navy-800: #071A33;
+    --color-navy-900: #040F1E;
+    --color-navy-950: #020A14;
 
-    /* Gold Aksen */
-    --color-gold-400: #f5c842;
-    --color-gold-500: #e5b730;
-    --color-gold-600: #c89c1a;
+    /* Gold Aksen Kepolisian */
+    --color-gold-300: #FAD96A;
+    --color-gold-400: #F4C430;
+    --color-gold-500: #DDAF18;
+    --color-gold-600: #B8910F;
 
-    /* Merah Indonesia */
+    /* Merah Darurat */
     --color-red-polri: #cc0000;
     --color-red-polri-dark: #990000;
 
-    /* Font */
-    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-serif: 'Merriweather', Georgia, serif;
+    /* Font — Inter prioritas utama */
+    --font-sans: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-display: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
 
     /* Breakpoints */
     --breakpoint-xs: 480px;
@@ -43,22 +45,43 @@
     html {
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     body {
         font-family: var(--font-sans);
         color: #1e293b;
-        background-color: #f8fafc;
+        background-color: #F5F7FA;
+        font-size: 15px;
+        line-height: 1.6;
     }
 
-    h1, h2, h3 {
+    h1 {
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+    }
+
+    h2 {
         font-weight: 700;
         line-height: 1.2;
+        letter-spacing: -0.015em;
+    }
+
+    h3 {
+        font-weight: 600;
+        line-height: 1.25;
     }
 
     img {
         max-width: 100%;
         height: auto;
+    }
+
+    /* Selection styling */
+    ::selection {
+        background-color: #F4C430;
+        color: #071A33;
     }
 }
 
@@ -66,76 +89,96 @@
    CUSTOM COMPONENTS
    ========================================= */
 @layer components {
-    /* Tombol utama */
+
+    /* === BUTTONS === */
     .btn-primary {
-        @apply inline-flex items-center gap-2 px-6 py-3 bg-navy-500 text-white font-semibold rounded-xl
-               hover:bg-navy-600 active:scale-95 transition-all duration-200 shadow-md hover:shadow-lg;
+        @apply inline-flex items-center gap-2 px-5 py-2.5 bg-navy-700 text-white font-semibold
+               text-sm rounded hover:bg-navy-800 active:scale-98 transition-colors duration-150
+               border border-navy-700 hover:border-navy-800;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center gap-2 px-6 py-3 border-2 border-navy-500 text-navy-500 font-semibold
-               rounded-xl hover:bg-navy-500 hover:text-white active:scale-95 transition-all duration-200;
+        @apply inline-flex items-center gap-2 px-5 py-2.5 border border-navy-600 text-navy-700
+               font-semibold text-sm rounded hover:bg-navy-700 hover:text-white hover:border-navy-700
+               active:scale-98 transition-colors duration-150;
     }
 
     .btn-danger {
-        @apply inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-semibold rounded-xl
-               hover:bg-red-700 active:scale-95 transition-all duration-200;
+        @apply inline-flex items-center gap-2 px-5 py-2.5 bg-red-700 text-white font-semibold
+               text-sm rounded hover:bg-red-800 active:scale-98 transition-colors duration-150;
     }
 
     .btn-gold {
-        @apply inline-flex items-center gap-2 px-6 py-3 bg-gold-500 text-navy-800 font-bold rounded-xl
-               hover:bg-gold-600 active:scale-95 transition-all duration-200 shadow-md;
+        @apply inline-flex items-center gap-2 px-5 py-2.5 bg-gold-400 text-navy-800 font-bold
+               text-sm rounded hover:bg-gold-500 active:scale-98 transition-colors duration-150
+               border border-gold-500;
     }
 
-    /* Card */
+    /* === CARDS === */
     .card {
-        @apply bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden
-               hover:shadow-lg transition-shadow duration-300;
+        @apply bg-white rounded border border-slate-200 overflow-hidden
+               transition-shadow duration-200 hover:shadow-md;
     }
 
     .card-hover {
-        @apply bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+        @apply bg-white rounded border border-slate-200 overflow-hidden
+               hover:shadow-md hover:border-slate-300 transition-all duration-200;
     }
 
-    /* Section Heading */
+    /* === SECTION HEADINGS === */
     .section-title {
-        @apply text-3xl font-bold text-navy-700 mb-2;
+        @apply text-2xl font-bold text-navy-800 mb-2;
     }
 
     .section-subtitle {
-        @apply text-slate-500 text-lg mb-8;
+        @apply text-slate-500 text-sm mb-6 leading-relaxed;
     }
 
     .section-divider {
-        @apply w-16 h-1 bg-gold-500 rounded-full mb-4;
+        @apply w-10 h-0.5 bg-gold-400 mb-3;
     }
 
-    /* Badge */
+    /* === BADGES === */
     .badge {
-        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+        @apply inline-flex items-center px-2.5 py-0.5 text-xs font-semibold rounded-sm;
     }
 
     .badge-navy {
-        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-navy-100 text-navy-700;
+        @apply inline-flex items-center px-2.5 py-0.5 text-xs font-semibold rounded-sm
+               bg-navy-800 text-white;
     }
 
     .badge-gold {
-        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gold-400 text-navy-800;
+        @apply inline-flex items-center px-2.5 py-0.5 text-xs font-semibold rounded-sm
+               bg-gold-400 text-navy-900;
     }
 
     .badge-red {
-        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700;
+        @apply inline-flex items-center px-2.5 py-0.5 text-xs font-semibold rounded-sm
+               bg-red-700 text-white;
     }
 
     .badge-green {
-        @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700;
+        @apply inline-flex items-center px-2.5 py-0.5 text-xs font-semibold rounded-sm
+               bg-emerald-700 text-white;
     }
 
-    /* Form */
+    .badge-outline {
+        @apply inline-flex items-center px-2.5 py-0.5 text-xs font-semibold
+               border border-current rounded-sm;
+    }
+
+    /* === CATEGORY TAG — Gaya editorial berita === */
+    .tag-category {
+        @apply inline-block text-xs font-bold uppercase tracking-wider
+               border-l-2 border-gold-400 pl-2 text-gold-400;
+    }
+
+    /* === FORM ELEMENTS === */
     .form-input {
-        @apply w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800
-               placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500/30
-               focus:border-navy-500 transition-all duration-200;
+        @apply w-full px-3 py-2.5 rounded border border-slate-300 bg-white text-slate-800
+               placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-500/20
+               focus:border-navy-500 transition-colors duration-150 text-sm;
     }
 
     .form-label {
@@ -146,55 +189,81 @@
         @apply text-xs text-red-600 mt-1;
     }
 
-    /* Navbar link */
+    /* === NAVBAR LINKS === */
     .nav-link {
-        @apply text-slate-100 hover:text-gold-400 font-medium transition-colors duration-200
-               relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0
-               after:bg-gold-400 after:transition-all after:duration-300 hover:after:w-full;
+        @apply text-slate-200 hover:text-gold-400 font-medium text-sm transition-colors duration-150
+               relative pb-0.5
+               after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0
+               after:bg-gold-400 after:transition-all after:duration-200 hover:after:w-full;
     }
 
     .nav-link-active {
         @apply text-gold-400 after:w-full;
     }
 
-    /* Alert */
+    /* === ALERTS === */
     .alert-success {
-        @apply flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800;
+        @apply flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-300 rounded text-emerald-800 text-sm;
     }
 
     .alert-error {
-        @apply flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800;
+        @apply flex items-center gap-3 p-4 bg-red-50 border border-red-300 rounded text-red-800 text-sm;
     }
 
     .alert-info {
-        @apply flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-800;
+        @apply flex items-center gap-3 p-4 bg-blue-50 border border-blue-300 rounded text-blue-800 text-sm;
     }
 
-    /* Glassmorphism */
-    .glass {
-        @apply bg-white/10 backdrop-blur-md border border-white/20;
+    /* === PAGE HEADER — Standar untuk semua halaman === */
+    .page-header {
+        @apply bg-navy-800 text-white py-10 border-b-2 border-gold-400;
     }
 
-    /* Loading skeleton */
+    .page-header-eyebrow {
+        @apply text-xs font-bold uppercase tracking-widest text-gold-400 mb-1 block;
+    }
+
+    .page-header-title {
+        @apply text-2xl sm:text-3xl font-bold text-white;
+    }
+
+    /* === SKELETON === */
     .skeleton {
-        @apply bg-slate-200 animate-pulse rounded-lg;
+        @apply bg-slate-200 animate-pulse rounded;
+    }
+
+    /* === INSTITUTIONAL TABLE === */
+    .table-institutional {
+        @apply w-full text-sm border-collapse;
+    }
+
+    .table-institutional th {
+        @apply bg-navy-800 text-white text-xs font-semibold uppercase tracking-wider px-4 py-3 text-left;
+    }
+
+    .table-institutional td {
+        @apply px-4 py-3 border-b border-slate-100 text-slate-700;
+    }
+
+    .table-institutional tr:hover td {
+        @apply bg-slate-50;
     }
 }
 
 /* =========================================
-   ANIMATIONS
+   UTILITIES
    ========================================= */
 @layer utilities {
     .animate-fade-in {
-        animation: fadeIn 0.5s ease-out forwards;
+        animation: fadeIn 0.4s ease-out forwards;
     }
 
     .animate-slide-up {
-        animation: slideUp 0.5s ease-out forwards;
+        animation: slideUp 0.4s ease-out forwards;
     }
 
     .animate-slide-down {
-        animation: slideDown 0.3s ease-out forwards;
+        animation: slideDown 0.25s ease-out forwards;
     }
 
     @keyframes fadeIn {
@@ -203,24 +272,34 @@
     }
 
     @keyframes slideUp {
-        from { opacity: 0; transform: translateY(20px); }
+        from { opacity: 0; transform: translateY(16px); }
         to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
+        from { opacity: 0; transform: translateY(-8px); }
         to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Active scale utility */
+    .active\:scale-98:active {
+        transform: scale(0.98);
     }
 }
 
-/* Scrollbar custom */
+/* =========================================
+   SCROLLBAR
+   ========================================= */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #F5F7FA;
 }
 ::-webkit-scrollbar-thumb {
-    background: #1a3a6c;
-    border-radius: 3px;
+    background: #123B6D;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #0B2345;
 }
